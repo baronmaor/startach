@@ -1,5 +1,39 @@
 
 <div class="container">
-  <div class="box insideDivForm">1</div>
-  <div class="box insideDivTable">2</div>
+  <div class="box insideDivForm">
+    <form [formGroup]="FlightBooking">
+        <!-- country div -->
+        <div>
+            <i class="fas fa-flag"></i>
+            <select matNativeControl required formControlName="bookingCountry" (change)="test()">
+              <option value="" disabled selected>בחר מדינה</option>
+              <option *ngFor="let country of aCountries" [value]="country.name" >{{country.name}}</option>
+            </select>
+        </div>
+        <!-- date picker div -->
+        <div class="dateDivContainer">
+            <div class="dateDiv">
+                <i class="far fa-calendar-alt" (click)="pickerFrom.open()"></i>
+                <input formControlName="bookingDateFrom" matInput [matDatepicker]="pickerFrom" placeholder="תאריך מ...">
+                <mat-datepicker #pickerFrom></mat-datepicker>
+            </div>
+            <div class="dateDiv">
+                <i class="far fa-calendar-alt" (click)="pickerTo.open()"></i>
+                <input formControlName="bookingDateTo" matInput [matDatepicker]="pickerTo" placeholder="תאריך עד...">
+                <mat-datepicker #pickerTo></mat-datepicker>
+            </div>
+        </div>
+        <!-- notes div -->
+        <div class="notesDiv">
+            <i class="fas fa-sticky-note noteIcon"></i>
+            <textarea class="notesText" formControlName="bookingNotes"></textarea>
+        </div>
+        <div style="text-align:center">
+            <button mat-raised-button>שלח</button>
+        </div>
+    </form>
+
+<!-- list of travels  -->
+  </div>
+  <div class="box insideDivTable"></div>
 </div>

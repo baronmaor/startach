@@ -32,3 +32,41 @@
     background-color: $div-table-background;
     height: 450px;
 }
+select{
+    margin: 5px;
+    color:  #212121;
+    padding: 8px 16px;
+    border: 1px solid black;
+    border-color: black;
+    cursor: pointer;
+}
+.dateDivContainer{
+    display: flex;
+    flex-flow: row;
+    
+}
+.dateDiv input{
+    margin: 5px;
+    padding: 8px 16px;
+    width: 140px;
+    border: 1px solid black;
+    border-color: black;
+    
+}
+
+
+.notesDiv .noteIcon{
+    position: relative;
+    top:-15px;
+}
+.notesDiv textarea{
+    margin: 5px;
+    padding: 10px;
+    width: 350px;
+    border: 1px solid black;
+    border-color: black;
+
+}
+// option{
+//     color: #212121;
+// }
