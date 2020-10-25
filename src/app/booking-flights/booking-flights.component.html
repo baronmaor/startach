@@ -1,10 +1,10 @@
-
 <div class="container">
   <div class="box insideDivForm">
     <form [formGroup]="FlightBooking">
         <!-- country div -->
         <div>
-            <i class="fas fa-flag"></i>
+            
+            <i class="far fa-flag"  [ngClass]="(f.bookingCountry.invalid) ?'mandatory':'completed'"  matTooltip="שדה חובה"></i>
             <select matNativeControl required formControlName="bookingCountry" (change)="test()">
               <option value="" disabled selected>בחר מדינה</option>
               <option *ngFor="let country of aCountries" [value]="country.name" >{{country.name}}</option>
@@ -13,27 +13,57 @@
         <!-- date picker div -->
         <div class="dateDivContainer">
             <div class="dateDiv">
-                <i class="far fa-calendar-alt" (click)="pickerFrom.open()"></i>
-                <input formControlName="bookingDateFrom" matInput [matDatepicker]="pickerFrom" placeholder="תאריך מ...">
+                <i class="far fa-calendar-alt" [ngClass]="(f.bookingDateFrom.invalid) ?'mandatory':'completed'" matTooltip="שדה חובה" style="cursor: pointer;"(click)="pickerFrom.open()"></i>
+                <input formControlName="bookingDateFrom" matInput [matDatepicker]="pickerFrom" (dateInput)="onStartDateChange()" [min]="minDateFrom" [max]="f.bookingDateTo.value" placeholder="תאריך מ...">
                 <mat-datepicker #pickerFrom></mat-datepicker>
             </div>
             <div class="dateDiv">
-                <i class="far fa-calendar-alt" (click)="pickerTo.open()"></i>
-                <input formControlName="bookingDateTo" matInput [matDatepicker]="pickerTo" placeholder="תאריך עד...">
+                <i class="far fa-calendar-alt " [ngClass]="(f.bookingDateTo.invalid) ?'mandatory':'completed'" matTooltip="שדה חובה" style="cursor: pointer;"(click)="pickerTo.open()"></i>
+                <input formControlName="bookingDateTo" matInput [matDatepicker]="pickerTo" [min]="minDateTo" placeholder="תאריך עד..." [disabled]="f.bookingDateFrom.invalid">
                 <mat-datepicker #pickerTo></mat-datepicker>
             </div>
         </div>
         <!-- notes div -->
         <div class="notesDiv">
-            <i class="fas fa-sticky-note noteIcon"></i>
-            <textarea class="notesText" formControlName="bookingNotes"></textarea>
+            <i class="far fa-sticky-note completed noteIcon"></i>
+            <textarea class="notesText" formControlName="bookingNotes" placeholder="הערות..."></textarea>
         </div>
         <div style="text-align:center">
-            <button mat-raised-button>שלח</button>
+           <button mat-raised-button  (click)="addTravel()" [ngClass]="{'btnDisabled':ErrorObj.isSubmitBtnDisable || FlightBooking.invalid}" [disabled]="ErrorObj.isSubmitBtnDisable || FlightBooking.invalid" >שלח</button>
+        </div>
+        <!-- error msg -->
+        <div *ngIf="ErrorObj.isSubmitBtnDisable" class="txtError">
+        <p >{{ErrorObj.msg}}</p>
         </div>
     </form>
 
 <!-- list of travels  -->
   </div>
-  <div class="box insideDivTable"></div>
+  <div class="box insideDivTable">
+    <table #travelTable mat-table [dataSource]="dataSource" class="mat-elevation-z8" width="100%">
+
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>מס.</th>
+          <td mat-cell *matCellDef="let element"> {{element.bookingNumber}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="country">
+          <th mat-header-cell *matHeaderCellDef> מדינה </th>
+          <td mat-cell *matCellDef="let element"> {{element.bookingCountry}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="from">
+          <th mat-header-cell *matHeaderCellDef> מתאריך </th>
+          <td mat-cell *matCellDef="let element"> {{element.bookingDateFrom | date}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="to">
+          <th mat-header-cell *matHeaderCellDef> עד תאריך </th>
+          <td mat-cell *matCellDef="let element"> {{element.bookingDateTo | date}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+  </div>
 </div>

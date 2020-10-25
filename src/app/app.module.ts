@@ -6,10 +6,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import { BookingFlightsComponent } from './booking-flights/booking-flights.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import{MatNativeDateModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
