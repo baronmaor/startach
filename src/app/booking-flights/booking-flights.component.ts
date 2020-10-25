@@ -31,7 +31,7 @@ export class BookingFlightsComponent implements OnInit,OnDestroy {
 
  
   aCountries:CountryType[]=[];
-  displayedColumns: string[] = ['position', 'country', 'from', 'to'];
+  displayedColumns: string[] = ['position', 'country', 'from', 'to','notes'];
   dataSource = this.TRAVEL_DATA;
 
   constructor(private apicall:ApiCallsService) { 
@@ -50,7 +50,9 @@ export class BookingFlightsComponent implements OnInit,OnDestroy {
     // initiating observable and start listening 
     this.subscription = this.apicall.onNewTravel().subscribe(travel => { 
           this.dataSource=travel;
-          this.travelTable.renderRows();
+          if(this.dataSource.length>1){//module render needs to be at least with one value for the *ngIF statement
+            this.travelTable.renderRows();
+          }
     });
   }
 
@@ -99,7 +101,5 @@ export class BookingFlightsComponent implements OnInit,OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe(); // memory leaks handle 
 }
-test(){
-  console.log(this.f.bookingCountry)
-}
+
 }

@@ -30,3 +30,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 <!-- empty fields validated  -->
 <!-- response from mock server adding travel handled -->
 <!-- min max check on date picker  -->
+
+<!-- perhaps  -->
+<!-- date stat every 50 country get scrolled paging  -->
