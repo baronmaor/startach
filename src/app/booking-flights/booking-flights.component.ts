@@ -77,18 +77,12 @@ export class BookingFlightsComponent implements OnInit,OnDestroy {
   }
 
   //add single travel onbtnclick
-    addTravel(){ 
+    addTravel(bookedData){ 
       if(this.ErrorObj.isSubmitBtnDisable || this.FlightBooking.invalid){
         return;
       }
-    const data = {
-      bookingCountry:this.f.bookingCountry.value,
-      bookingDateFrom:this.f.bookingDateFrom.value,
-      bookingDateTo:this.f.bookingDateTo.value,
-      bookingNotes:this.f.bookingNotes.value
-    }
     try {
-      this.apicall.setTravelList(data)
+      this.apicall.setTravelList(bookedData)
     } catch (error) {
       this.ErrorObj.isSubmitBtnDisable = true; //updating err obj btn
       this.ErrorObj.msg = error; //updating err obj msg

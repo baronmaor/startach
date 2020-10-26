@@ -29,7 +29,7 @@
             <textarea class="notesText" formControlName="bookingNotes" placeholder="הערות..."></textarea>
         </div>
         <div style="text-align:center">
-           <button mat-raised-button  (click)="addTravel()" [ngClass]="{'btnDisabled':ErrorObj.isSubmitBtnDisable || FlightBooking.invalid}" [disabled]="ErrorObj.isSubmitBtnDisable || FlightBooking.invalid" >שלח</button>
+           <button mat-raised-button  (click)="addTravel(FlightBooking.value)" [ngClass]="{'btnDisabled':ErrorObj.isSubmitBtnDisable || FlightBooking.invalid}" [disabled]="ErrorObj.isSubmitBtnDisable || FlightBooking.invalid" >שלח</button>
         </div>
         <!-- error msg -->
         <div *ngIf="ErrorObj.isSubmitBtnDisable" class="txtError">
