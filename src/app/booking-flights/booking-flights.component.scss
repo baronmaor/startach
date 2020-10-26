@@ -87,5 +87,46 @@ select{
 .noData{
     text-align: center;
     margin: auto;
-    
+
 }
+
+
+@media only screen and (max-width: 600px) {
+        .container{
+            display: block;
+            width:auto;
+            height: 100%;
+            margin: 0;
+            padding: 0px;
+            top:auto;
+            left:auto;
+            margin: 0;
+            padding: 0;
+            transform: translate(0%, -0%);
+            
+        }
+        .dateDivContainer{
+            display: block;
+        }
+        input{
+            width: 80%;
+        }
+        select{
+         width: 80%;   
+        }
+        .notesDiv textarea{
+            width:80%
+        }
+        .box{
+            margin: 15px;
+            padding: 5px;
+            border-radius: 10px;
+            width: 90%;
+            height: auto;
+          }
+          .insideDivTable{
+            text-align: center;
+          }
+
+  }
+
